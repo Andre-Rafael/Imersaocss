@@ -40,6 +40,7 @@ header{
   position: fixed;
   width: 100vw;
   top: 0;
+  z-index: 1;
 }
 
 a{
@@ -52,9 +53,19 @@ a:hover{
   text-decoration: underline;
 }
 
+.menu li{
+  list-style: none;
+}
+
 .menu a{
   display: block;
   padding: 10px 20px;
+  transition: background-color 1s, color 1s;
+}
+
+.menu a:hover{
+  background-color:whitesmoke;
+  color: blue;
 }
 
 .menu ul{
@@ -62,8 +73,22 @@ a:hover{
   justify-content: space-evenly
 }
 
-.menu li{
-  list-style: none;
+.Titulos{
+  transform: scale(0.2) translateY(50vh);
+  opacity: 0;
+  
+  animation: ease 2s animacao forwards;
+}
+
+@keyframes animacao{
+  0%{ /*Inicial, pode usar from e to*/
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+  }
+  100%{ /*estado final*/
+    transform: scale(1) translate(0);
+    opacity: 1;
+  }
 }
 
 .site-subtitle,
@@ -78,15 +103,18 @@ a:hover{
   line-height: 1.8;
 }
 
+.contatos,
 .portfolio{
   padding: 2em;
-  height: 100vh;
+  min-height: 100vh; /*minimo da altura*/
 }
 
+.contatos h2,
 .portfolio h2{
   font-family: 'Pacifico', cursive;
-  text-align: center;
-  margin-bottom: 2em;
+  color: whitesmoke;
+  margin-bottom: 1.5em;
+  font-size: 2em;
 }
 
 .img-portfolio{
@@ -94,12 +122,16 @@ a:hover{
   width: 180px;
   object-fit: contain;
   object-position: center;
+  transition: transform 500ms;
+}
+
+.img-portfolio:hover{
+  transform: scale(1.5) rotate(45deg);
 }
 
 .portfolio .grid{ /*seleciona a classe grid dentro da classe portfolio*/
   display: grid;
   gap: 1em; /*defini o espaçamente entre coluna ou linha do grid*/
-  justify-content: center;
 }
 
 /*se a tela tiver pelo menos 400px de largura, vai carregar estes estilos*/
@@ -109,7 +141,7 @@ a:hover{
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1200px) {
   .portfolio .grid{ 
     grid-template-columns: repeat(3, 240px);
     align-content: center;
@@ -120,4 +152,20 @@ a:hover{
 
 .portfolio figure{
   text-align: center;
+}
+
+.contatos .icons{
+  text-align: center;
+}
+
+.contatos a{
+  color: whitesmoke;
+  font-size: 4em;
+  transition: text-shadow 1s;
+}
+
+.contatos a:active, /*o momento do touch*/
+.contatos a:hover{
+  text-decoration: none;
+  text-shadow: 0px 0px 15px red;
 }
